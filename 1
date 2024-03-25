@@ -1,0 +1,16 @@
+def ceaser_cipher(text,key):
+    result=" "
+    for char in text:
+        if char.isalpha():
+            base=ord("A") if char.isupper() else ord("a")
+            result += chr(((ord(char)-base+key)%26)+base)
+        else:
+            result+=char
+    return result
+text="venkat"
+key=int(input("Enter the key value (1-25):"))
+
+encrypted_text=ceaser_cipher(text,key)
+decrypted_text=ceaser_cipher(encrypted_text,-key)
+print(f"key={key},encrypted_text={encrypted_text},decrypted_text={decrypted_text}")
+    
