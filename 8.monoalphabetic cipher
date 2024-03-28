@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main() {
+    char plaintextAlphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";  // Plaintext alphabet
+    char ciphertextAlphabet[27];  // Ciphertext alphabet
+    char plaintext[1000];
+    char ciphertext[1000];
+    int i, index;
+
+
+    printf("Enter the substitution key (ciphertext alphabet): ");
+    scanf("%s", ciphertextAlphabet);
+
+    if (strlen(ciphertextAlphabet) != 26) {
+        printf("Ciphertext alphabet must contain exactly 26 characters.\n");
+        return 1;
+    }
+
+    printf("Enter the plaintext (in uppercase): ");
+    scanf("%s", plaintext);
+
+  
+    for (i = 0; i < strlen(plaintext); i++) {
+        if (isalpha(plaintext[i])) {
+            if (isupper(plaintext[i])) {
+                index = plaintext[i] - 'A';
+                ciphertext[i] = ciphertextAlphabet[index];
+            } else {
+                index = plaintext[i] - 'a';
+                ciphertext[i] = tolower(ciphertextAlphabet[index]);
+            }
+        } else {
+            ciphertext[i] = plaintext[i];  // Non-alphabet characters remain unchanged
+        }
+    }
+
+    ciphertext[i] = '\0';  // Null-terminate the ciphertext
+
+    printf("Ciphertext: %s\n", ciphertext);
+
+    return 0;
+}
